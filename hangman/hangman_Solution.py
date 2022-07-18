@@ -41,6 +41,7 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
+        self.list_letters = []
         self.word = random.choice(word_list)
         self.word_guessed = list(self.word)
         for index in range(len(self.word_guessed)):
@@ -76,11 +77,13 @@ class Hangman:
         init_letter = input("Please choose a letter: ")
         if len(init_letter) >= 2 :
             input("Please, enter just one character: ")
+        elif init_letter in self.list_letters:
+            input(init_letter, "was already tried")   
         else:
             global letter
             letter = init_letter
-            
-        pass    
+            self.list_letters = self.list_letters + [letter]
+        
         '''
         Asks the user for a letter and checks two things:
         1. If the letter has already been tried
