@@ -62,8 +62,8 @@ class Hangman:
             indices = [i for i, x in enumerate(list(self.word)) if x == letter.lower()]
             for index in indices:
                 self.word_guessed[index] = letter.lower()
-                
-            self.num_letters == int(self.num_letters) - 1
+            print(self.word_guessed)    
+            self.num_letters = int(self.num_letters) - 1
         else:
             self.num_lives = int(self.num_lives) - 1
             print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
