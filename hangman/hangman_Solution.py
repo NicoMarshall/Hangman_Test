@@ -41,9 +41,11 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
+        self.num_lives = num_lives
         self.list_letters = []
         self.word = random.choice(word_list)
         self.word_guessed = list(self.word)
+        self.num_letters = len(set(list(self.word))) - len(self.list_letters)
         for index in range(len(self.word_guessed)):
             self.word_guessed[index] = "_"
         print("The mystery word has", len(list(self.word)), "characters")
@@ -55,6 +57,17 @@ class Hangman:
     
 
     def check_letter(self, letter) -> None:
+        if letter.lower() in list(self.word):
+            print("Nice!", letter, "is in the word!")
+            indices = [i for i, x in enumerate(list(self.word)) if x == letter.lower()]
+            for index in indices:
+                self.word_guessed[index] = letter.lower()
+            print(self.word_guessed)    
+            self.num_letters = int(self.num_letters) - 1
+        else:
+            self.num_lives = int(self.num_lives) - 1
+            print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
+
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -101,7 +114,7 @@ def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
     game.ask_letter()
-    
+    game.check_letter(letter)
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
     # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
