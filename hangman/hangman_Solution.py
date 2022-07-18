@@ -41,11 +41,17 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
+        self.word = random.choice(word_list)
+        self.word_guessed = list(self.word)
+        for index in range(len(self.word_guessed)):
+            self.word_guessed[index] = "_"
+        print("The mystery word has", len(list(self.word)), "characters")
+        print(self.word_guessed)
         # TODO 2: Initialize the attributes as indicated in the docstring
         # TODO 2: Print two message upon initialization:
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
         # 2. {word_guessed}
-        pass
+    
 
     def check_letter(self, letter) -> None:
         '''
@@ -74,7 +80,7 @@ class Hangman:
             global letter
             letter = init_letter
             
-            
+        pass    
         '''
         Asks the user for a letter and checks two things:
         1. If the letter has already been tried
