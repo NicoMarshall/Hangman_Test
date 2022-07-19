@@ -121,8 +121,11 @@ def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
     game.ask_letter()
-    
-    
+    while game.num_lives >= 1:
+        while game.num_letters >= 1:
+            game.ask_letter()
+        print("Congratulations, you won!") break   
+    print("You ran out of lives. The word was", game.word)
         
         
      
