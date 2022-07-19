@@ -64,6 +64,7 @@ class Hangman:
                 self.word_guessed[index] = letter.lower()
             print(self.word_guessed)    
             self.num_letters = int(self.num_letters) - 1
+            
         else:
             self.num_lives = int(self.num_lives) - 1
             print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
@@ -88,15 +89,15 @@ class Hangman:
 
     def ask_letter(self):
         init_letter = input("Please choose a letter: ")
-        if len(init_letter) >= 2 :
-            input("Please, enter just one character: ")
-        elif init_letter in self.list_letters:
+        while len(init_letter) >= 2 :
+            init_letter = input("Please, enter just one character: ")
+        while init_letter in self.list_letters:
             input(init_letter, "was already tried")   
-        else:
-            global letter
-            letter = init_letter
-            self.list_letters = self.list_letters + [letter]
-            Hangman.check_letter(self,letter)
+        
+        global letter
+        letter = init_letter
+        self.list_letters = self.list_letters + [letter]
+        Hangman.check_letter(self,letter)
             
             
             
@@ -112,6 +113,8 @@ class Hangman:
         # TODO 1: The letter has to comply with the following criteria: It has to be a single character. If it is not, print "Please, enter just one character"
         # TODO 2. It has to be a letter that has not been tried yet. Use the list_letters attribute to check this. If it has been tried, print "{letter} was already tried".
         # TODO 3: If the letter is valid, call the check_letter method
+        pass
+        
         
 
 def play_game(word_list):
@@ -119,6 +122,10 @@ def play_game(word_list):
     game = Hangman(word_list, num_lives=5)
     game.ask_letter()
     
+    
+        
+        
+     
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
     # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
@@ -127,11 +134,12 @@ def play_game(word_list):
     # If the user guesses the word, print "Congratulations, you won!"
     # If the user runs out of lives, print "You ran out of lives. The word was {word}"
 
-    pass
+    
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
     play_game(word_list)
+    
     
 
     
