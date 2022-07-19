@@ -92,7 +92,7 @@ class Hangman:
         while len(init_letter) >= 2 :
             init_letter = input("Please, enter just one character: ")
         while init_letter in self.list_letters:
-            input(init_letter, "was already tried")   
+            init_letter = input(f'{init_letter}' " was already tried: ")   
         
         global letter
         letter = init_letter
@@ -121,9 +121,12 @@ def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
     game.ask_letter()
-    
-    
-        
+    while game.num_lives >= 1:
+        if game.num_letters == 0 :
+            print("Congratulations, you won!")
+            break
+        else: game.ask_letter()    
+    else: print("You ran out of lives. The word was", game.word)   
         
      
     # TODO 1: To test this task, you can call the ask_letter method
