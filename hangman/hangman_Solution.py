@@ -143,7 +143,7 @@ class Hangman:
             print("|-----|")
             print("|     0")
             print("|    -|-")
-            print("|    /_\\")
+            print("|    / \\")
             print("|_____")
         
         
