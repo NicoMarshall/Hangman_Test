@@ -68,6 +68,8 @@ class Hangman:
         else:
             self.num_lives = int(self.num_lives) - 1
             print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
+            Hangman.add_line(self)
+        
 
         '''
         Checks if the letter is in the word.
@@ -114,7 +116,41 @@ class Hangman:
         # TODO 2. It has to be a letter that has not been tried yet. Use the list_letters attribute to check this. If it has been tried, print "{letter} was already tried".
         # TODO 3: If the letter is valid, call the check_letter method
         pass
+    
+    
+    def add_line(self):
+        if self.num_lives == 4:
+            print("_____")
+        elif self.num_lives == 3:
+            print("|")
+            print("|")
+            print("|")
+            print("|") 
+            print("|_____")
+        elif self.num_lives == 2:
+            print("|-----")
+            print("|")
+            print("|")
+            print("|") 
+            print("|_____")
+        elif self.num_lives == 1:
+            print("|-----|")
+            print("|")
+            print("|")
+            print("|") 
+            print("|_____")    
+        elif self.num_lives == 0:
+            print("|-----|")
+            print("|     0")
+            print("|    -|-")
+            print("|    /_\\")
+            print("|_____")
         
+        
+      
+            
+        
+                
         
 
 def play_game(word_list):
