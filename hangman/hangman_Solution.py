@@ -1,8 +1,4 @@
-'''
-Make sure you complete all the TODOs in this file.
-The prints have to contain the same text as indicated, don't add any more prints,
-or you will get 0 for this assignment.
-'''
+
 import random
 
 class Hangman:
@@ -54,6 +50,17 @@ class Hangman:
     
 
     def check_letter(self, letter) -> None:
+        '''
+        Checks if the letter is in the word.
+        If it is, it replaces the '_' in the word_guessed list with the letter.
+        If it is not, it reduces the number of lives by 1.
+
+        Parameters:
+        ----------
+        letter: str
+            The letter to be checked
+
+        '''
         if letter.lower() in list(self.word):
             print("Nice!", letter, "is in the word!")
             indices = [i for i, x in enumerate(list(self.word)) if x == letter.lower()]
@@ -67,22 +74,15 @@ class Hangman:
             print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
             Hangman.add_line(self)
         
-
-        '''
-        Checks if the letter is in the word.
-        If it is, it replaces the '_' in the word_guessed list with the letter.
-        If it is not, it reduces the number of lives by 1.
-
-        Parameters:
-        ----------
-        letter: str
-            The letter to be checked
-
-        '''
-        
         pass
 
     def ask_letter(self):
+        '''
+        Asks the user for a letter and checks two things:
+        1. If the letter has already been tried
+        2. If the character is a single character
+        If it passes both checks, it calls the check_letter method.
+        '''
         init_letter = input("Please choose a letter: ")
         while len(init_letter) >= 2 :
             init_letter = input("Please, enter just one character: ")
@@ -92,17 +92,7 @@ class Hangman:
         global letter
         letter = init_letter
         self.list_letters = self.list_letters + [letter]
-        Hangman.check_letter(self,letter)
-            
-            
-            
-        
-        '''
-        Asks the user for a letter and checks two things:
-        1. If the letter has already been tried
-        2. If the character is a single character
-        If it passes both checks, it calls the check_letter method.
-        '''
+        self.check_letter(letter)
         
         pass
     
@@ -136,28 +126,18 @@ class Hangman:
             print("|_____")
         
         
-      
-            
-        
-                
-        
-
-def play_game(word_list):
-    
-    game = Hangman(word_list, num_lives=5)
-    game.ask_letter()
-    while game.num_lives >= 1:
-        if game.num_letters == 0 :
-            print("Congratulations, you won!")
-            break
-        else: game.ask_letter()    
-    else: print("You ran out of lives. The word was", game.word)   
-        
-     
-    
-
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
+    def play_game(word_list):
+        
+        game = Hangman(word_list, num_lives=5)
+        game.ask_letter()
+        while game.num_lives >= 1:
+            if game.num_letters == 0 :
+                print("Congratulations, you won!")
+                break
+            else: game.ask_letter()    
+        else: print("You ran out of lives. The word was", game.word)  
     play_game(word_list)
     
     
