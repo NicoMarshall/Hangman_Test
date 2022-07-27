@@ -72,7 +72,7 @@ class Hangman:
         else:
             self.num_lives = int(self.num_lives) - 1
             print("Sorry,", letter, "is not in the word. You have", self.num_lives, "lives left")
-            Hangman.add_line(self)
+            self.add_line()
         
         pass
 
